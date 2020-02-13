@@ -2,9 +2,12 @@
 
 (defn my-is-prime?
   [number end total-parts start]
-  (not (some zero?
-             (map mod (repeat number)
-                  (range start end total-parts)))))
+  (loop [start start]
+    (if (>= start end)
+      true
+      (if (zero? (mod number start))
+        false
+        (recur (+ start total-parts))))))
 
 
 (defn -main [& args]
